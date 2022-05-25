@@ -13,6 +13,9 @@
 		090A5DF1283DB683007C02EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DEF283DB683007C02EC /* Main.storyboard */; };
 		090A5DF3283DB685007C02EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DF2283DB685007C02EC /* Assets.xcassets */; };
 		090A5DF6283DB685007C02EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DF4283DB685007C02EC /* LaunchScreen.storyboard */; };
+		090A5DFF283DBC58007C02EC /* GameTableCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A5DFD283DBC58007C02EC /* GameTableCellTableViewCell.swift */; };
+		090A5E00283DBC58007C02EC /* GameTableCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DFE283DBC58007C02EC /* GameTableCellTableViewCell.xib */; };
+		090A5E02283DBF06007C02EC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 090A5E01283DBF06007C02EC /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		090A5DF2283DB685007C02EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		090A5DF5283DB685007C02EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		090A5DF7283DB685007C02EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		090A5DFD283DBC58007C02EC /* GameTableCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableCellTableViewCell.swift; sourceTree = "<group>"; };
+		090A5DFE283DBC58007C02EC /* GameTableCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTableCellTableViewCell.xib; sourceTree = "<group>"; };
+		090A5E01283DBF06007C02EC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +66,12 @@
 				090A5DEB283DB683007C02EC /* SceneDelegate.swift */,
 				090A5DED283DB683007C02EC /* ViewController.swift */,
 				090A5DEF283DB683007C02EC /* Main.storyboard */,
+				090A5DFD283DBC58007C02EC /* GameTableCellTableViewCell.swift */,
+				090A5DFE283DBC58007C02EC /* GameTableCellTableViewCell.xib */,
 				090A5DF2283DB685007C02EC /* Assets.xcassets */,
 				090A5DF4283DB685007C02EC /* LaunchScreen.storyboard */,
 				090A5DF7283DB685007C02EC /* Info.plist */,
+				090A5E01283DBF06007C02EC /* Settings.bundle */,
 			);
 			path = condensation;
 			sourceTree = "<group>";
@@ -125,7 +134,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090A5E00283DBC58007C02EC /* GameTableCellTableViewCell.xib in Resources */,
 				090A5DF6283DB685007C02EC /* LaunchScreen.storyboard in Resources */,
+				090A5E02283DBF06007C02EC /* Settings.bundle in Resources */,
 				090A5DF3283DB685007C02EC /* Assets.xcassets in Resources */,
 				090A5DF1283DB683007C02EC /* Main.storyboard in Resources */,
 			);
@@ -138,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090A5DFF283DBC58007C02EC /* GameTableCellTableViewCell.swift in Sources */,
 				090A5DEE283DB683007C02EC /* ViewController.swift in Sources */,
 				090A5DEA283DB683007C02EC /* AppDelegate.swift in Sources */,
 				090A5DEC283DB683007C02EC /* SceneDelegate.swift in Sources */,
