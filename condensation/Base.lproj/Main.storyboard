@@ -11,7 +11,7 @@
         <!--Top-->
         <scene sceneID="Otf-ha-09S">
             <objects>
-                <viewController id="IxS-Oa-SVr" sceneMemberID="viewController">
+                <viewController id="IxS-Oa-SVr" customClass="TopViewController" customModule="condensation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Shl-l8-BhC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
         <!--Settings-->
         <scene sceneID="iVx-Ly-rZk">
             <objects>
-                <viewController id="PFL-60-V9e" sceneMemberID="viewController">
+                <viewController id="PFL-60-V9e" customClass="SettingsViewController" customModule="condensation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oOB-Fc-2x4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +43,7 @@
         <!--Favorites-->
         <scene sceneID="QrK-YV-KTO">
             <objects>
-                <viewController id="GP1-f9-x5d" sceneMemberID="viewController">
+                <viewController id="GP1-f9-x5d" customClass="FavoritesViewController" customModule="condensation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Y9-jV-RWJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,7 +59,7 @@
         <!--Home-->
         <scene sceneID="ufw-dg-mX6">
             <objects>
-                <viewController id="H9n-9t-5qJ" sceneMemberID="viewController">
+                <viewController id="H9n-9t-5qJ" customClass="HomeViewController" customModule="condensation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IEc-p8-jEl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
