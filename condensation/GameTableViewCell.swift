@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameTableCellTableViewCell: UITableViewCell {
+class GameTableViewCell: UITableViewCell {
     @IBOutlet weak var GameImage: UIImageView!
     @IBOutlet weak var GameName: UILabel!
     @IBOutlet weak var CurrentPrice: UILabel!

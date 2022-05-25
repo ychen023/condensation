@@ -63,10 +63,26 @@
                     <view key="view" contentMode="scaleToFill" id="IEc-p8-jEl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ibH-f1-Zd1">
+                                <rect key="frame" x="16" y="60" width="382" height="737"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Nbd-Eh-3Mc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ibH-f1-Zd1" firstAttribute="top" secondItem="Nbd-Eh-3Mc" secondAttribute="top" constant="16" id="1GV-sN-uyb"/>
+                            <constraint firstItem="Nbd-Eh-3Mc" firstAttribute="bottom" secondItem="ibH-f1-Zd1" secondAttribute="bottom" constant="16" id="Dv2-K4-ctu"/>
+                            <constraint firstItem="Nbd-Eh-3Mc" firstAttribute="trailing" secondItem="ibH-f1-Zd1" secondAttribute="trailing" constant="16" id="MQg-hn-SwC"/>
+                            <constraint firstItem="ibH-f1-Zd1" firstAttribute="leading" secondItem="Nbd-Eh-3Mc" secondAttribute="leading" constant="16" id="rfQ-zV-mCi"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="VhK-TS-dLf"/>
+                    <connections>
+                        <outlet property="HomeTableView" destination="ibH-f1-Zd1" id="Mfw-Xa-2ws"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiw-uA-Ts2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
