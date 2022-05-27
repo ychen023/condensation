@@ -15,6 +15,7 @@
 		090A5DFF283DBC58007C02EC /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A5DFD283DBC58007C02EC /* GameTableViewCell.swift */; };
 		090A5E00283DBC58007C02EC /* GameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DFE283DBC58007C02EC /* GameTableViewCell.xib */; };
 		090A5E02283DBF06007C02EC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 090A5E01283DBF06007C02EC /* Settings.bundle */; };
+		090A5E04284059E1007C02EC /* ModelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A5E03284059E1007C02EC /* ModelDataSource.swift */; };
 		3C0AC54E283DC0F6000589A7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC54D283DC0F6000589A7 /* HomeViewController.swift */; };
 		3C0AC552283DC115000589A7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC551283DC115000589A7 /* DetailViewController.swift */; };
 		3C0AC554283DC120000589A7 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC553283DC120000589A7 /* FavoritesViewController.swift */; };
@@ -34,6 +35,7 @@
 		090A5DFD283DBC58007C02EC /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		090A5DFE283DBC58007C02EC /* GameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTableViewCell.xib; sourceTree = "<group>"; };
 		090A5E01283DBF06007C02EC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		090A5E03284059E1007C02EC /* ModelDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataSource.swift; sourceTree = "<group>"; };
 		3C0AC54D283DC0F6000589A7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3C0AC551283DC115000589A7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3C0AC553283DC120000589A7 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				3C0AC555283DC12F000589A7 /* TopViewController.swift */,
 				3C0AC557283DC141000589A7 /* SettingsViewController.swift */,
 				50A8CE3A283DC9E40051381A /* Model.swift */,
+				090A5E03284059E1007C02EC /* ModelDataSource.swift */,
 			);
 			path = condensation;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090A5E04284059E1007C02EC /* ModelDataSource.swift in Sources */,
 				50A8CE3B283DC9E40051381A /* Model.swift in Sources */,
 				3C0AC54E283DC0F6000589A7 /* HomeViewController.swift in Sources */,
 				090A5DFF283DBC58007C02EC /* GameTableViewCell.swift in Sources */,

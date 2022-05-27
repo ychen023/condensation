@@ -6,31 +6,47 @@
 //
 
 import UIKit
+import SystemConfiguration
 
-class HomeViewController: UIViewController {
+struct GameInfo {
+    let title: String
+    let listPrice: String
+    let currentPrice: String
+    let rate: String
+}
+
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return gameInfo.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: GameTableViewCell.identifier, for: indexPath) as! GameTableViewCell
+        
+        cell.config(GameName: gameInfo[indexPath.row].title, CurrentPrice: gameInfo[indexPath.row].currentPrice, ListedPrice: gameInfo[indexPath.row].listPrice, GameRating: gameInfo[indexPath.row].rate)
+        
+        return cell
+    }
     
     
     @IBOutlet weak var HomeTableView: UITableView!
-    
+    var game : [Game] = []
     var urlString = "https://www.cheapshark.com/api/1.0/deals"
+    var gameInfo : [GameInfo] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        HomeTableView.delegate = self
-//        HomeTableView.dataSource = self
+        HomeTableView.delegate = self
+        HomeTableView.dataSource = self
         
-        let nib = UINib(nibName: "GameTableViewCell", bundle: nil)
-        HomeTableView.register(nib, forCellReuseIdentifier: "GameTableViewCell")
+//        let categories = try! JSONDecoder().decode([GameTitle].self, from: data)
         
         getData()
+        let nib = UINib(nibName: "GameTableViewCell", bundle: nil)
+        HomeTableView.register(nib, forCellReuseIdentifier: "GameTableViewCell")
+        HomeTableView.rowHeight = 80.0
         // Do any additional setup after loading the view.
     }
     
@@ -50,13 +66,16 @@ class HomeViewController: UIViewController {
                         do {
                             let questions =  try JSONSerialization.jsonObject(with: data!) as! NSArray
                             print("start")
-                            for i in 0..<questions.count {
-                                let curr = questions[i] as! NSDictionary
-                                print(curr["title"]!)
+
+                            DispatchQueue.main.async {
+                                for i in 0..<questions.count {
+                                    
+                                    let curr = questions[i] as! NSDictionary
+                                    print(curr)
+                                    self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String))
+                                }
+                                self.HomeTableView.reloadData()
                             }
-//                            DispatchQueue.main.async {
-//                                // make changes to UI
-//                            }
                         } catch {
                             DispatchQueue.main.async {
                                 print("something went wrong")
