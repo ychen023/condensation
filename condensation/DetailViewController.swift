@@ -2,16 +2,30 @@
 //  DetailViewController.swift
 //  condensation
 //
-//  Created by Ian Wang on 5/24/22.
+//  Created by Yilin Chen on 5/31/22.
 //
 
 import UIKit
 
 class DetailViewController: UIViewController {
+    @IBOutlet weak var GameTitle: UILabel!
+    @IBOutlet weak var GameImage: UIImageView!
+    @IBOutlet weak var currPrice: UILabel!
+    @IBOutlet weak var lowPrice: UILabel!
+    @IBOutlet weak var retailPrice: UILabel!
+    @IBOutlet weak var GameRating: UILabel!
+    
+    var gameID : String?
+    var gameTitle : String?
+    var cheapPrice : String?
+    var steamRatingText: String?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        GameTitle.text = gameTitle
+        GameRating.text = steamRatingText
+        lowPrice.text = cheapPrice
         // Do any additional setup after loading the view.
     }
     
