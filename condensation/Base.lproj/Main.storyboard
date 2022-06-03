@@ -32,8 +32,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fiy-qe-r4r">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fiy-qe-r4r">
                                 <rect key="frame" x="16" y="322" width="382" height="504"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="stores" textLabel="CZQ-eT-faI" detailTextLabel="Yku-Yp-Bww" rowHeight="46" style="IBUITableViewCellStyleValue1" id="WDt-rf-5lB">
@@ -144,11 +145,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AFd-ks-FP5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="fiy-qe-r4r" firstAttribute="leading" secondItem="AFd-ks-FP5" secondAttribute="leading" constant="16" id="DDR-hh-0Gf"/>
-                            <constraint firstItem="AFd-ks-FP5" firstAttribute="trailing" secondItem="fiy-qe-r4r" secondAttribute="trailing" constant="16" id="GYf-yb-mar"/>
-                            <constraint firstItem="AFd-ks-FP5" firstAttribute="bottom" secondItem="fiy-qe-r4r" secondAttribute="bottom" constant="16" id="iLR-y7-f7t"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="GameImage" destination="py0-sL-Mac" id="vzr-w1-VMv"/>

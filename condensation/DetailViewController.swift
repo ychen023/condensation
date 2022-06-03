@@ -9,9 +9,9 @@ import UIKit
 
 
 struct DealInfo {
-    let StoreName : String
+    let StoreName : String?
 //    let Image : UIImageView
-    let Price : String
+    let Price : String?
 }
 
 
@@ -45,17 +45,18 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         GameRating.text = steamRatingText
         lowPrice.text = cheapPrice
         getStores()
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
         getData()
         
         // Do any additional setup after loading the view.
     }
     
     @objc func updateTimer() {
-        self.tableView.reloadData()
+        print("hello")
     }
     
-    
     fileprivate func getData() {
+        stores = []
         guard let url = URL.init(string: urlString + gameID) else {
                 print("no good")
                 return
@@ -74,18 +75,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 for i in 0..<deals.count {
                                     let curr = deals[i] as! NSDictionary
                                     var storeID = curr["storeID"]
-                                    if storeID == nil {
-                                        storeID = "0"
-                                    }
                                     var price = curr["price"]
-                                    if price == nil {
-                                        price = "0"
-                                    }
-                                    self.stores.append(DealInfo(StoreName: self.allStores[storeID! as! String]!, Price: price! as! String))
+                                    self.stores.append(DealInfo(StoreName: self.allStores[storeID! as! String], Price: price! as? String))
                                     
                                     
                                 }
-                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+//                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+                                self.tableView.reloadData()
                             }
                             
                         } catch {
@@ -100,6 +96,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     
     fileprivate func getStores() {
+        allStores = [:]
         guard let url = URL.init(string: "https://www.cheapshark.com/api/1.0/stores") else {
                 print("no good")
                 return
@@ -120,7 +117,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                     let storeName = curr["storeName"]!
                                     self.allStores[storeID as! String] = storeName as? String
                                 }
-                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+                                self.tableView.reloadData()
                             }
                             
                         } catch {
@@ -140,7 +137,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "stores", for: indexPath)
-        cell.textLabel?.text = "abc"
+        cell.textLabel?.text = stores[indexPath.row].StoreName
+        cell.detailTextLabel?.text = stores[indexPath.row].Price
         return cell
     }
 
