@@ -14,6 +14,7 @@ struct GameInfo {
     let currentPrice: String
     let rate: String
     let gameID: String
+    let image: UIImageView
 //    var retailPrice: String!
     let steamRatingText: String
 }
@@ -36,7 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
-        cell.config(GameName: gameInfo[indexPath.row].title, CurrentPrice: gameInfo[indexPath.row].currentPrice, ListedPrice: gameInfo[indexPath.row].listPrice, GameRating: gameInfo[indexPath.row].rate)
+        cell.config(GameName: gameInfo[indexPath.row].title, CurrentPrice: gameInfo[indexPath.row].currentPrice, ListedPrice: gameInfo[indexPath.row].listPrice, GameRating: gameInfo[indexPath.row].rate, GameImage: gameInfo[indexPath.row].image)
         
         return cell
     }
@@ -87,7 +88,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Do any additional setup after loading the view.
     }
     
-
+    @objc func updateTimer() {
+        self.HomeTableView.reloadData()
+    }
     
     fileprivate func getData() {
             guard let url = URL.init(string: urlString) else {
@@ -115,11 +118,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     if temp != nil {
                                         temp2 = temp!
                                     }
-                                    
-                                    self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, steamRatingText: temp2))
+                                    let temp3 = UIImageView()
+                                    temp3.downloaded(from: URL(string: curr["thumb"] as! String)!)
+                                    self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, steamRatingText: temp2))
                                 }
-                                self.HomeTableView.reloadData()
+                                let timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+//                                self.HomeTableView.reloadData()
                             }
+                            
                         } catch {
                             DispatchQueue.main.async {
                                 print("something went wrong")
@@ -131,4 +137,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             session.resume()
         }
 
+}
+
+
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() { [weak self] in
+                self?.image = image
+            }
+        }.resume()
+    }
+    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
+    }
 }
