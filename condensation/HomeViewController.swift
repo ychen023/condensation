@@ -112,7 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 for i in 0..<questions.count {
                                     
                                     let curr = questions[i] as! NSDictionary
-                                    print(curr)
+//                                    print(curr)
                                     let temp = curr["steamRatingText"] as? String
                                     var temp2 = "unavailable"
                                     if temp != nil {
@@ -122,7 +122,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     temp3.downloaded(from: URL(string: curr["thumb"] as! String)!)
                                     self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, steamRatingText: temp2))
                                 }
-                                let timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
 //                                self.HomeTableView.reloadData()
                             }
                             
