@@ -9,9 +9,9 @@ import UIKit
 
 
 struct DealInfo {
-    let StoreName : String?
+    let StoreName : String
 //    let Image : UIImageView
-    let Price : String?
+    let Price : String
 }
 
 
@@ -45,7 +45,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         GameRating.text = steamRatingText
         lowPrice.text = cheapPrice
         getStores()
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
         getData()
         
         // Do any additional setup after loading the view.
@@ -74,9 +73,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             DispatchQueue.main.async {
                                 for i in 0..<deals.count {
                                     let curr = deals[i] as! NSDictionary
-                                    var storeID = curr["storeID"]
-                                    var price = curr["price"]
-                                    self.stores.append(DealInfo(StoreName: self.allStores[storeID! as! String], Price: price! as? String))
+                                    var storeID = curr["storeID"]! as! String
+                                    var price = curr["price"]! as! String
+                                    
+                                    var storeName = self.allStores[storeID]
+                                    if storeName == nil {
+                                        storeName = "Loading"
+                                    }
+                                    
+                                    
+                                    self.stores.append(DealInfo(StoreName: storeName!, Price: price))
                                     
                                     
                                 }
