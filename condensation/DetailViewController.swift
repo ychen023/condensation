@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Foundation
+import SystemConfiguration
 
 
 struct DealInfo {
@@ -20,12 +22,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var allStores : [String:String] = [:]
     
+    var savedStores : [String] = []
+    
     @IBOutlet weak var GameTitle: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
     @IBOutlet weak var currPrice: UILabel!
     @IBOutlet weak var lowPrice: UILabel!
     @IBOutlet weak var retailPrice: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var FavoriteButton: UIButton!
+    
     
     var gameID : String!
     var gameTitle : String?
@@ -134,6 +141,67 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             session.resume()
         }
+    
+    @IBAction func addFavorite(_ sender: Any) {
+//        print(gameID)
+//        savedStores.append(gameID)
+//        print(savedStores)
+
+        do {
+            DispatchQueue.main.async {
+                
+                if (self.savedStores.isEmpty) {
+                    print("empty")
+                    
+                } else {
+                    let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
+                    let tempSave = NSArray(contentsOf: archiveURL)
+                    let objCArrayTemp = NSMutableArray(array: tempSave ?? [0])
+
+                    if var swiftArray = objCArrayTemp as NSArray as? [String] {
+                        swiftArray.append(self.gameID)
+                        print(swiftArray)
+                        
+                        let archivePath = NSHomeDirectory() + "/Documents/favorites.archive"
+                        let favorites = swiftArray as NSArray
+                        favorites.write(toFile: archivePath, atomically:true)
+                    }
+                    
+                    print("Printing contents of archive")
+                   
+                    let readGames = NSArray(contentsOf: archiveURL)
+                    print(readGames)
+
+                }
+//                let archivePath = NSHomeDirectory() + "/Documents/favorites.archive"
+//                let favorites = self.savedStores as NSArray
+//                favorites.write(toFile: archivePath, atomically:true)
+//                print("saving")
+//
+//
+//                let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
+//                print(archiveURL)
+//
+//                let readGames = NSArray(contentsOf: archiveURL)
+//                print(readGames)
+//
+//                print("reading")
+//                print(readGames!)
+            }
+        } catch {
+            DispatchQueue.main.async {
+                print("something went wrong")
+            }
+        }
+
+        
+    }
+    
+    
+    
+    
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stores.count
