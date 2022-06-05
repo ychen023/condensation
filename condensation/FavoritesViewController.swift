@@ -23,10 +23,19 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         FavTableView.dataSource = self
         FavTableView.delegate = self
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tempGames = []
+        gameInfo = []
+        populateFavorites()
+    }
+    
+    func populateFavorites() {
         let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
         let urlString = NSHomeDirectory() + "/Documents/favorites.archive"
         
@@ -44,9 +53,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         if !tempGames.isEmpty {
             getFavs()
         }
-        
     }
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return gameInfo.count
     }
