@@ -14,7 +14,6 @@ struct TopGameInfo {
     let rate: String
     let gameID: String
     let image: UIImageView
-    let steamRatingText: String
 }
 
 class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -24,7 +23,6 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var currentPrice : String!
     var lowPrice : String!
 //    var retailPrice: String!
-    var steamRatingText: String!
     
     var topGame : [TopGameInfo] = []
 
@@ -48,7 +46,6 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         currentPrice = topGame[indexPath.row].currentPrice
 //        lowPrice = topGame[indexPath.row].lowPrice
 //        retailPrice = topGame[indexPath.row].currentPrice
-        steamRatingText = topGame[indexPath.row].steamRatingText
 
         print("User selected row at \(indexPath)")
         let cell = tableView.cellForRow(at: indexPath)
@@ -60,7 +57,6 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let destination = segue.destination as? DetailViewController {
                 destination.gameID = curGameID
                 destination.gameTitle = gameTitle!
-                destination.steamRatingText = steamRatingText as! String ?? "Test"
                 destination.cheapPrice = lowPrice
             }
         }
@@ -109,11 +105,6 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
 
                                     let curr = topGames[i] as! NSDictionary
                                     print(curr)
-                                    let temp = curr["steamRatingText"] as? String
-                                    var temp2 = "unavailable"
-                                    if temp != nil {
-                                        temp2 = temp!
-                                    }
                                     let temp4 = UIImageView()
                                     temp4.downloaded(from: URL(string: curr["thumb"] as! String)!)
 
@@ -122,7 +113,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                                             if checkUnique.contains(curr["title"] as! String) {
                                                 print("contains")
                                             } else { // exist
-                                                self.topGame.append(TopGameInfo(title: curr["title"] as! String, listPrice: curr["normalPrice"] as! String, currentPrice: curr["salePrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp4, steamRatingText: temp2))
+                                                self.topGame.append(TopGameInfo(title: curr["title"] as! String, listPrice: curr["normalPrice"] as! String, currentPrice: curr["salePrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp4))
                                                 checkUnique.append(curr["title"] as! String)
                                             }
                                         }

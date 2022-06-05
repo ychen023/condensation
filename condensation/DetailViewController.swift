@@ -25,7 +25,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var currPrice: UILabel!
     @IBOutlet weak var lowPrice: UILabel!
     @IBOutlet weak var retailPrice: UILabel!
-    @IBOutlet weak var GameRating: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     var gameID : String!
@@ -42,7 +41,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         GameTitle.text = gameTitle
-        GameRating.text = steamRatingText
         lowPrice.text = cheapPrice
         getStores()
         getData()

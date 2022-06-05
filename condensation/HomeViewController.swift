@@ -16,7 +16,6 @@ struct GameInfo {
     let gameID: String
     let image: UIImageView
 //    var retailPrice: String!
-    let steamRatingText: String
 }
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -25,7 +24,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var currentPrice : String!
     var lowPrice : String!
 //    var retailPrice: String!
-    var steamRatingText: String!
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +46,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         currentPrice = gameInfo[indexPath.row].currentPrice
 //        lowPrice = gameInfo[indexPath.row].lowPrice
 //        retailPrice = gameInfo[indexPath.row].currentPrice
-        steamRatingText = gameInfo[indexPath.row].steamRatingText 
         
         print("User selected row at \(indexPath)")
         let cell = tableView.cellForRow(at: indexPath)
@@ -62,7 +59,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let destination = segue.destination as? DetailViewController {
                 destination.gameID = curGameID
                 destination.gameTitle = gameTitle!
-                destination.steamRatingText = steamRatingText as! String ?? "Test"
                 destination.cheapPrice = lowPrice
             }
         }
@@ -120,7 +116,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     }
                                     let temp3 = UIImageView()
                                     temp3.downloaded(from: URL(string: curr["thumb"] as! String)!)
-                                    self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, steamRatingText: temp2))
+                                    self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3))
                                 }
                                 let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
 //                                self.HomeTableView.reloadData()
