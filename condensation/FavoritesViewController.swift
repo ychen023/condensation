@@ -68,8 +68,15 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        // TODO: Get detail view to load in favorites pages
+//        curGameID = topGame[indexPath.row].gameID
+//        gameTitle = topGame[indexPath.row].title
+//        currentPrice = topGame[indexPath.row].currentPrice
+        
         print("User selected row at \(indexPath)")
-        let cell = tableView.cellForRow(at: indexPath)
+//        let cell = tableView.cellForRow(at: indexPath)
+//        self.performSegue(withIdentifier: "FavDetail", sender: Any?.self)
+//        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
