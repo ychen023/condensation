@@ -15,7 +15,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     var lowPrice : String!
     var currentPrice : String!
     
-    var tempGames : [String] = ["128", "129", "130"]
+    var tempGames : [String] = []
     
     var gameInfo : [(String, String, UIImageView)] = []
     
@@ -24,9 +24,23 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // fill temp array with data
         FavTableView.dataSource = self
         FavTableView.delegate = self
+        
+        let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
+        let urlString = NSHomeDirectory() + "/Documents/favorites.archive"
+        
+        let readthing = NSArray(contentsOf: archiveURL)
+        
+        if readthing == nil {
+            // put a label on the page that says it's empty
+        } else {
+            print(readthing!)
+            for gameID in readthing! {
+                tempGames.append(gameID as! String)
+            }
+        }
+        
         if !tempGames.isEmpty {
             getFavs()
         }

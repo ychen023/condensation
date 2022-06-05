@@ -22,8 +22,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var allStores : [String:String] = [:]
     
-    var savedStores : [String] = []
-    
     @IBOutlet weak var GameTitle: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
     @IBOutlet weak var currPrice: UILabel!
@@ -147,32 +145,41 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        savedStores.append(gameID)
 //        print(savedStores)
 
+        
+        
         do {
             DispatchQueue.main.async {
+
+                let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
+                let urlString = NSHomeDirectory() + "/Documents/favorites.archive"
                 
-                if (self.savedStores.isEmpty) {
-                    print("empty")
-                    
+                let readthing = NSArray(contentsOf: archiveURL)
+                if (readthing == nil) {
+                    let temp : NSArray = [self.gameID]
+                    temp.write(toFile: urlString, atomically: true)
                 } else {
-                    let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
+
                     let tempSave = NSArray(contentsOf: archiveURL)
                     let objCArrayTemp = NSMutableArray(array: tempSave ?? [0])
 
                     if var swiftArray = objCArrayTemp as NSArray as? [String] {
                         swiftArray.append(self.gameID)
                         print(swiftArray)
-                        
-                        let archivePath = NSHomeDirectory() + "/Documents/favorites.archive"
                         let favorites = swiftArray as NSArray
-                        favorites.write(toFile: archivePath, atomically:true)
+                        favorites.write(toFile: urlString, atomically:true)
                     }
-                    
-                    print("Printing contents of archive")
-                   
-                    let readGames = NSArray(contentsOf: archiveURL)
-                    print(readGames)
-
                 }
+                
+//                test.write(toFile: urlString, atomically: true)
+                
+                
+
+//
+//                    print("Printing contents of archive")
+//
+//                    let readGames = NSArray(contentsOf: archiveURL)
+//                    print(readGames)
+                
 //                let archivePath = NSHomeDirectory() + "/Documents/favorites.archive"
 //                let favorites = self.savedStores as NSArray
 //                favorites.write(toFile: archivePath, atomically:true)
