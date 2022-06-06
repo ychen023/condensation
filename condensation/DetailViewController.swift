@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import SystemConfiguration
+import MessageUI
 
 
 struct DealInfo {
@@ -18,7 +19,15 @@ struct DealInfo {
 
 
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+   }
+    
     
     var allStores : [String:String] = [:]
     
@@ -30,6 +39,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var FavoriteButton: UIButton!
+    @IBOutlet weak var SharingButton: UIButton!
     
     
     var gameID : String!
@@ -76,8 +86,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             DispatchQueue.main.async {
                                 for i in 0..<deals.count {
                                     let curr = deals[i] as! NSDictionary
-                                    var storeID = curr["storeID"]! as! String
-                                    var price = curr["price"]! as! String
+                                    let storeID = curr["storeID"]! as! String
+                                    let price = curr["price"]! as! String
                                     
                                     var storeName = self.allStores[storeID]
                                     if storeName == nil {
@@ -155,7 +165,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 let readthing = NSArray(contentsOf: archiveURL)
                 if (readthing == nil) {
-                    let temp : NSArray = [self.gameID]
+                    let temp : NSArray = [self.gameID ?? 0]
                     temp.write(toFile: urlString, atomically: true)
                 } else {
 
@@ -195,16 +205,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                print("reading")
 //                print(readGames!)
             }
-        } catch {
-            DispatchQueue.main.async {
-                print("something went wrong")
-            }
         }
 
         
     }
     
-    
+
+    @IBAction func shareSms(_ sender: Any) {
+        //TODO: Will have to change the recipients
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Message Body"
+            controller.recipients = ["1231231234"]
+            controller.messageComposeDelegate = self
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stores.count
@@ -220,7 +236,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         print("User selected row at \(indexPath)")
-        let cell = tableView.cellForRow(at: indexPath)
+        _ = tableView.cellForRow(at: indexPath)
     }
 
 }

@@ -23,7 +23,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var gameTitle: String!
     var currentPrice : String!
     var lowPrice : String!
-//    var retailPrice: String!
+    @IBOutlet weak var searchInput: UITextField!
+    //    var retailPrice: String!
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +54,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.deselectRow(at: indexPath, animated: true)
        
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let destination = segue.destination as? DetailViewController {
