@@ -19,6 +19,8 @@
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string>1/1/22</string>
 			<key>Title</key>
 			<string>Earliest Release Date (MM-DD-YYYY)</string>
 			<key>Key</key>
@@ -27,6 +29,8 @@
 		<dict>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string>0</string>
 			<key>Title</key>
 			<string>Minimum Rating</string>
 			<key>Key</key>
