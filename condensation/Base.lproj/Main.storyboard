@@ -241,7 +241,7 @@
                                     <action selector="darkModeToggled:" destination="PFL-60-V9e" eventType="valueChanged" id="Udb-lm-Css"/>
                                 </connections>
                             </switch>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="0hB-j2-UpB">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9" minValue="9" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="0hB-j2-UpB">
                                 <rect key="frame" x="36" y="300" width="343" height="31"/>
                                 <connections>
                                     <action selector="ratingSliderChanged:" destination="PFL-60-V9e" eventType="valueChanged" id="8pW-CZ-h7B"/>
@@ -404,7 +404,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="tLS-Ok-vg7"/>
+        <segue reference="Lo1-a3-FNp"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="gear" catalog="system" width="128" height="119"/>

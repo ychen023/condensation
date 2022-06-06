@@ -82,13 +82,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
 //        let categories = try! JSONDecoder().decode([GameTitle].self, from: data)
         
-        getData()
+//        getData()
         
         let nib = UINib(nibName: "GameTableViewCell", bundle: nil)
         
         HomeTableView.register(nib, forCellReuseIdentifier: "GameTableViewCell")
         HomeTableView.rowHeight = 80.0
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        game = []
+        gameInfo = []
+        filteredGameInfo = []
+        getData()
     }
     
     @objc func updateTimer() {
