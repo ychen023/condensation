@@ -22,7 +22,7 @@
 			<key>DefaultValue</key>
 			<string>1/1/22</string>
 			<key>Title</key>
-			<string>Earliest Release Date (MM-DD-YYYY)</string>
+			<string>Earliest Release Date (MM/DD/YY)</string>
 			<key>Key</key>
 			<string>earliestRelease</string>
 		</dict>
