@@ -58,7 +58,12 @@ class SettingsViewController: UIViewController {
     @IBAction func darkModeToggled(_ sender: Any) {
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(darkModeSlider.isOn, forKey: "darkMode")
-        
-        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = userDefaults.bool(forKey: "darkMode") ? .dark : .light
+
+//        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = userDefaults.bool(forKey: "darkMode") ? .dark : .light
+        if let window = UIApplication.shared.keyWindow {
+            UIView.transition (with: window, duration: 0.4, options: .transitionCrossDissolve, animations: {
+                window.overrideUserInterfaceStyle = userDefaults.bool(forKey: "darkMode") ? .dark : .light
+            }, completion: nil)
+        }
     }
 }

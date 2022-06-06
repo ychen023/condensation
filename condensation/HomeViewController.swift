@@ -77,12 +77,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userDefaults = UserDefaults.standard
+
+        if (userDefaults.value(forKey: "earliestRelease") == nil) {
+            userDefaults.setValue("1/1/22", forKey: "earliestRelease")
+        }
+
+        if (userDefaults.value(forKey: "minRating") == nil) {
+            userDefaults.setValue("0", forKey: "minRating")
+        }
+        
         HomeTableView.delegate = self
         HomeTableView.dataSource = self
-        
-//        let categories = try! JSONDecoder().decode([GameTitle].self, from: data)
-        
-//        getData()
         
         let nib = UINib(nibName: "GameTableViewCell", bundle: nil)
         
@@ -145,8 +151,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
                                 }
                                 
+                                
+                                
                                 // Filter game data based on settings
                                 let userDefaults = UserDefaults.standard
+                                
                                 self.filteredGameInfo = self.gameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
                                 
                                 let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
