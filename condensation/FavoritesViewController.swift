@@ -46,7 +46,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             print(readthing!)
             for gameID in readthing! {
-                tempGames.append(gameID as! String)
+                self.tempGames.append(gameID as! String)
             }
         }
         

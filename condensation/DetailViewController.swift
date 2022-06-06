@@ -46,7 +46,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var gameTitle : String?
     var cheapPrice : String?
     var steamRatingText: String?
-
+    var dealID : String!
+    
     var urlString = "https://www.cheapshark.com/api/1.0/games?id="
     
     var stores : [DealInfo] = []
@@ -215,8 +216,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //TODO: Will have to change the recipients
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
-            controller.body = "Message Body"
-            controller.recipients = ["1231231234"]
+            var temp = ""
+            if dealID != nil {
+                temp = "\n https://www.cheapshark.com/redirect?dealID=\(dealID!)"
+            }
+            controller.body = "There is a deal on \(gameTitle!)! \(temp)"
+            controller.recipients = []
             controller.messageComposeDelegate = self
             self.present(controller, animated: true, completion: nil)
         }

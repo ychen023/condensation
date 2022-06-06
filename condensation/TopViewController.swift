@@ -14,6 +14,7 @@ struct TopGameInfo {
     let rate: String
     let gameID: String
     let image: UIImageView
+    let dealID : String
 }
 
 class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -22,6 +23,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var gameTitle: String!
     var currentPrice : String!
     var lowPrice : String!
+    var dealID : String!
 //    var retailPrice: String!
     
     var topGame : [TopGameInfo] = []
@@ -44,6 +46,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         curGameID = topGame[indexPath.row].gameID
         gameTitle = topGame[indexPath.row].title
         currentPrice = topGame[indexPath.row].currentPrice
+        dealID = topGame[indexPath.row].dealID
 //        lowPrice = topGame[indexPath.row].lowPrice
 //        retailPrice = topGame[indexPath.row].currentPrice
 
@@ -58,6 +61,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 destination.gameID = curGameID
                 destination.gameTitle = gameTitle!
                 destination.cheapPrice = lowPrice
+                destination.dealID = dealID
             }
         }
     
@@ -113,7 +117,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                                             if checkUnique.contains(curr["title"] as! String) {
                                                 print("contains")
                                             } else { // exist
-                                                self.topGame.append(TopGameInfo(title: curr["title"] as! String, listPrice: curr["normalPrice"] as! String, currentPrice: curr["salePrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp4))
+                                                self.topGame.append(TopGameInfo(title: curr["title"] as! String, listPrice: curr["normalPrice"] as! String, currentPrice: curr["salePrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp4, dealID: curr["dealID"] as! String))
                                                 checkUnique.append(curr["title"] as! String)
                                             }
                                         }
