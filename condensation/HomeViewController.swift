@@ -15,6 +15,7 @@ struct GameInfo {
     let rate: String
     let gameID: String
     let image: UIImageView
+    let dealID : String
 //    var retailPrice: String!
 }
 
@@ -23,7 +24,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var gameTitle: String!
     var currentPrice : String!
     var lowPrice : String!
-//    var retailPrice: String!
+    var dealID : String!
+    @IBOutlet weak var searchInput: UITextField!
+    //    var retailPrice: String!
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +47,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         curGameID = filteredGameInfo[indexPath.row].gameID
         gameTitle = filteredGameInfo[indexPath.row].title
         currentPrice = filteredGameInfo[indexPath.row].currentPrice
+        dealID = gameInfo[indexPath.row].dealID
+      
 //        lowPrice = gameInfo[indexPath.row].lowPrice
 //        retailPrice = gameInfo[indexPath.row].currentPrice
         
@@ -53,13 +58,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.deselectRow(at: indexPath, animated: true)
        
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let destination = segue.destination as? DetailViewController {
                 destination.gameID = curGameID
                 destination.gameTitle = gameTitle!
                 destination.cheapPrice = lowPrice
+                destination.dealID = dealID
             }
         }
     
@@ -91,6 +96,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     fileprivate func getData() {
+        var checkUniqueName = [""]
+
             guard let url = URL.init(string: urlString) else {
                 print("no good")
                 return
@@ -108,7 +115,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
                             DispatchQueue.main.async {
                                 for i in 0..<questions.count {
-                                    
+                                        
                                     let curr = questions[i] as! NSDictionary
 //                                    print(curr)
                                     let temp = curr["steamRatingText"] as? String
@@ -118,7 +125,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     }
                                     let temp3 = UIImageView()
                                     temp3.downloaded(from: URL(string: curr["thumb"] as! String)!)
-                                    self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3))
+                                    
+                                    for i in 0..<checkUniqueName.count {
+                                        if checkUniqueName.contains(curr["title"] as! String) {
+                                            print("contains")
+                                        } else {
+                                            self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, dealID: curr["dealID"] as! String))
+                                            checkUniqueName.append(curr["title"] as! String)
+                                        }
+                                    }
+
                                 }
                                 
                                 // Filter game data based on settings
