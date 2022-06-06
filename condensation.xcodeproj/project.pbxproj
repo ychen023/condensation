@@ -21,6 +21,7 @@
 		3C0AC556283DC12F000589A7 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC555283DC12F000589A7 /* TopViewController.swift */; };
 		3C0AC558283DC141000589A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC557283DC141000589A7 /* SettingsViewController.swift */; };
 		50A8CE3B283DC9E40051381A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8CE3A283DC9E40051381A /* Model.swift */; };
+		50A8CE3F284EB1DE0051381A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8CE3E284EB1DE0051381A /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		3C0AC555283DC12F000589A7 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		3C0AC557283DC141000589A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		50A8CE3A283DC9E40051381A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		50A8CE3E284EB1DE0051381A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				3C0AC555283DC12F000589A7 /* TopViewController.swift */,
 				3C0AC557283DC141000589A7 /* SettingsViewController.swift */,
 				50A8CE3A283DC9E40051381A /* Model.swift */,
+				50A8CE3E284EB1DE0051381A /* SearchViewController.swift */,
 			);
 			path = condensation;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A8CE3F284EB1DE0051381A /* SearchViewController.swift in Sources */,
 				50A8CE3B283DC9E40051381A /* Model.swift in Sources */,
 				3C0AC54E283DC0F6000589A7 /* HomeViewController.swift in Sources */,
 				090A5DFF283DBC58007C02EC /* GameTableViewCell.swift in Sources */,
