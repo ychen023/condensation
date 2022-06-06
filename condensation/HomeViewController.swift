@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gameInfo.count
+        return filteredGameInfo.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -35,15 +35,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         
-        cell.config(GameName: gameInfo[indexPath.row].title, CurrentPrice: gameInfo[indexPath.row].currentPrice, ListedPrice: gameInfo[indexPath.row].listPrice, GameRating: gameInfo[indexPath.row].rate, GameImage: gameInfo[indexPath.row].image)
+        cell.config(GameName: filteredGameInfo[indexPath.row].title, CurrentPrice: filteredGameInfo[indexPath.row].currentPrice, ListedPrice: filteredGameInfo[indexPath.row].listPrice, GameRating: filteredGameInfo[indexPath.row].rate, GameImage: filteredGameInfo[indexPath.row].image)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        curGameID = gameInfo[indexPath.row].gameID
-        gameTitle = gameInfo[indexPath.row].title
-        currentPrice = gameInfo[indexPath.row].currentPrice
+        curGameID = filteredGameInfo[indexPath.row].gameID
+        gameTitle = filteredGameInfo[indexPath.row].title
+        currentPrice = filteredGameInfo[indexPath.row].currentPrice
 //        lowPrice = gameInfo[indexPath.row].lowPrice
 //        retailPrice = gameInfo[indexPath.row].currentPrice
         
@@ -67,6 +67,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var game : [Game] = []
     var urlString = "https://www.cheapshark.com/api/1.0/deals"
     var gameInfo : [GameInfo] = []
+    var filteredGameInfo : [GameInfo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +78,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        let categories = try! JSONDecoder().decode([GameTitle].self, from: data)
         
         getData()
+        
         let nib = UINib(nibName: "GameTableViewCell", bundle: nil)
         
         HomeTableView.register(nib, forCellReuseIdentifier: "GameTableViewCell")
@@ -118,6 +120,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     temp3.downloaded(from: URL(string: curr["thumb"] as! String)!)
                                     self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3))
                                 }
+                                
+                                // Filter game data based on settings
+                                let userDefaults = UserDefaults.standard
+                                self.filteredGameInfo = self.gameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
+                                
                                 let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
 //                                self.HomeTableView.reloadData()
                             }
@@ -130,6 +137,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 }
             }
+        
             session.resume()
         }
 
