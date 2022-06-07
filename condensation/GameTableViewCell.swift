@@ -20,7 +20,7 @@ class GameTableViewCell: UITableViewCell {
         
         self.GameImage!.image = image.image
         self.GameName.text = name
-        self.CurrentPrice.text = "current price: \(currPrice)"
+        self.CurrentPrice.text = currPrice
 //        self.ListedPrice.text = "listed price: \(listPrice)"
         self.ListedPrice.attributedText = "listed price: \(listPrice)".strikeThrough()
         self.GameRating.text =  "rating: \(rate)"
