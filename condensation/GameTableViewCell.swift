@@ -20,22 +20,23 @@ class GameTableViewCell: UITableViewCell {
         
         self.GameImage!.image = image.image
         self.GameName.text = name
-        self.CurrentPrice.text = currPrice
-        self.ListedPrice.text = listPrice
-        self.GameRating.text = rate
+        self.CurrentPrice.text = "current price: \(currPrice)"
+//        self.ListedPrice.text = "listed price: \(listPrice)"
+        self.ListedPrice.attributedText = "listed price: \(listPrice)".strikeThrough()
+        self.GameRating.text =  "rating: \(rate)"
         
         
         
         GameName.translatesAutoresizingMaskIntoConstraints = false
         GameName.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        GameName.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -40).isActive = true
+        GameName.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -80).isActive = true
         
         ListedPrice.translatesAutoresizingMaskIntoConstraints = false
-        ListedPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        ListedPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35).isActive = true
         ListedPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         CurrentPrice.translatesAutoresizingMaskIntoConstraints = false
-        CurrentPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        CurrentPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35).isActive = true
         CurrentPrice.bottomAnchor.constraint(equalTo: ListedPrice.topAnchor).isActive = true
         
         GameImage.translatesAutoresizingMaskIntoConstraints = false
@@ -62,4 +63,12 @@ class GameTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+extension String {
+    func strikeThrough() -> NSAttributedString {
+        let attributeString =  NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+        return attributeString
+    }
 }

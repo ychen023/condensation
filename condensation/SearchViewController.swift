@@ -29,6 +29,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        
+        self.hideKeyboardWhenTappedAround()
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,12 +71,27 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         do {
                             let results = try JSONSerialization.jsonObject(with: data!) as! NSArray
                             DispatchQueue.main.async {
-                                for i in 0..<results.count {
-                                    let curr = results[i] as! NSDictionary
-                                    self.tempGames.append(curr["gameID"] as! String)
-                                    print(curr["external"])
+                                if results.count == 0 {
+                                    // Create new Alert
+                                    var dialogMessage = UIAlertController(title: "No results", message: "No game found", preferredStyle: .alert)
+                                    
+                                    // Create OK button with action handler
+                                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                                        print("Ok button tapped")
+                                     })
+                                    
+                                    //Add OK button to a dialog message
+                                    dialogMessage.addAction(ok)
+                                    // Present Alert to
+                                    self.present(dialogMessage, animated: true, completion: nil)
+                                } else {
+                                    for i in 0..<results.count {
+                                        let curr = results[i] as! NSDictionary
+                                        self.tempGames.append(curr["gameID"] as! String)
+                                        print(curr["external"])
+                                    }
+                                    self.searchId()
                                 }
-                                self.searchId()
                             }
                         } catch {
                             DispatchQueue.main.async {
@@ -117,7 +135,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                     
                                     self.gameInfo.append((gameID.key as! String, title as! String, temp3))
                                 }
-                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer2), userInfo: nil, repeats: false)
+//                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer2), userInfo: nil, repeats: false)
+                                self.searchTableView.reloadData()
+
                             }
                             
                             
@@ -132,4 +152,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             session.resume()
         }
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

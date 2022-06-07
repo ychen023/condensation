@@ -60,7 +60,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let destination = segue.destination as? DetailViewController {
                 destination.gameID = curGameID
                 destination.gameTitle = gameTitle!
-                destination.cheapPrice = lowPrice
+//                destination.cheapPrice = lowPrice
                 destination.dealID = dealID
             }
         }
@@ -83,7 +83,7 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     var game : [Game] = []
-    var urlString = "https://www.cheapshark.com/api/1.0/deals?sortBy+reviews"
+    var urlString = "https://www.cheapshark.com/api/1.0/deals?sortBy+metacritic"
     
 
     
@@ -127,8 +127,8 @@ class TopViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                                 }
                                 
                                 
-                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
-//                                self.TopGameTable.reloadData()
+//                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+                                self.TopGameTable.reloadData()
                             }
                             
                         } catch {

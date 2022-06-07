@@ -162,7 +162,9 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                                     
                                     self.gameInfo.append((gameID.key as! String, title as! String, temp3))
                                 }
-                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+//                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+                                self.FavTableView.reloadData()
+
                             }
                             
                             

@@ -33,9 +33,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var GameTitle: UILabel!
     @IBOutlet weak var GameImage: UIImageView!
-    @IBOutlet weak var currPrice: UILabel!
-    @IBOutlet weak var lowPrice: UILabel!
-    @IBOutlet weak var retailPrice: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var FavoriteButton: UIButton!
@@ -47,6 +44,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var cheapPrice : String?
     var steamRatingText: String?
     var dealID : String!
+    var retail: String?
     
     var urlString = "https://www.cheapshark.com/api/1.0/games?id="
     
@@ -57,10 +55,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         GameTitle.text = gameTitle
-        lowPrice.text = cheapPrice
+//        lowPrice.text = "current price: \(cheapPrice!)"
+//        retailPrice.text = "normal price: \(retail!)"
         getStores()
         getData()
-        
+        tableView.rowHeight = 80.0
         // Do any additional setup after loading the view.
     }
     
@@ -155,11 +154,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        print(gameID)
 //        savedStores.append(gameID)
 //        print(savedStores)
-
+        
         
         
         do {
             DispatchQueue.main.async {
+                self.FavoriteButton.setImage(UIImage(named: "filledHeart"), for: .highlighted)
 
                 let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
                 let urlString = NSHomeDirectory() + "/Documents/favorites.archive"

@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var lowPrice : String!
     var dealID : String!
     @IBOutlet weak var searchInput: UITextField!
-    //    var retailPrice: String!
+    var retailPrice: String!
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,8 +50,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         currentPrice = filteredGameInfo[indexPath.row].currentPrice
         dealID = gameInfo[indexPath.row].dealID
       
-//        lowPrice = gameInfo[indexPath.row].lowPrice
-//        retailPrice = gameInfo[indexPath.row].currentPrice
+        lowPrice = gameInfo[indexPath.row].currentPrice
+        retailPrice = gameInfo[indexPath.row].listPrice
         
         print("User selected row at \(indexPath)")
         let cell = tableView.cellForRow(at: indexPath)
@@ -64,7 +64,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let destination = segue.destination as? DetailViewController {
                 destination.gameID = curGameID
                 destination.gameTitle = gameTitle!
-                destination.cheapPrice = lowPrice
+//                destination.cheapPrice = lowPrice
+//                destination.retail = retailPrice
                 destination.dealID = dealID
             }
         }
@@ -146,7 +147,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                         if checkUniqueName.contains(curr["title"] as! String) {
                                             print("contains")
                                         } else {
-                                            self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, dealID: curr["dealID"] as! String, releaseDate: curr["releaseDate"] as! Double))
+                                            self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["normalPrice"] as! String, currentPrice: curr["salePrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, dealID: curr["dealID"] as! String, releaseDate: curr["releaseDate"] as! Double))
                                             checkUniqueName.append(curr["title"] as! String)
                                         }
                                     }
@@ -171,8 +172,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 self.filteredGameInfo = self.gameInfo.filter{$0.releaseDate >= test3}
         
                                 
-                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
-//                                self.HomeTableView.reloadData()
+//                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
+                                self.HomeTableView.reloadData()
                             }
                             
                         } catch {
