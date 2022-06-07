@@ -16,6 +16,7 @@ struct GameInfo {
     let gameID: String
     let image: UIImageView
     let dealID : String
+    let releaseDate : Double
 //    var retailPrice: String!
 }
 
@@ -80,7 +81,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let userDefaults = UserDefaults.standard
 
         if (userDefaults.value(forKey: "earliestRelease") == nil) {
-            userDefaults.setValue("1/1/22", forKey: "earliestRelease")
+            userDefaults.setValue("01/01/97", forKey: "earliestRelease")
         }
 
         if (userDefaults.value(forKey: "minRating") == nil) {
@@ -144,7 +145,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                         if checkUniqueName.contains(curr["title"] as! String) {
                                             print("contains")
                                         } else {
-                                            self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, dealID: curr["dealID"] as! String))
+                                            self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["salePrice"] as! String, currentPrice: curr["normalPrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, dealID: curr["dealID"] as! String, releaseDate: curr["releaseDate"] as! Double))
                                             checkUniqueName.append(curr["title"] as! String)
                                         }
                                     }
@@ -157,6 +158,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 let userDefaults = UserDefaults.standard
                                 
                                 self.filteredGameInfo = self.gameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
+                                
+                                let test = userDefaults.string(forKey: "earliestRelease")
+                                print(test!)
+                                
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "mm/dd/yy"
+                                let test2 = dateFormatter.date(from: test!)
+                                let test3 = test2!.timeIntervalSince1970
+                                
+                                self.filteredGameInfo = self.gameInfo.filter{$0.releaseDate >= test3}
+        
                                 
                                 let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
 //                                self.HomeTableView.reloadData()
