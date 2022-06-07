@@ -48,10 +48,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         curGameID = filteredGameInfo[indexPath.row].gameID
         gameTitle = filteredGameInfo[indexPath.row].title
         currentPrice = filteredGameInfo[indexPath.row].currentPrice
-        dealID = gameInfo[indexPath.row].dealID
+        dealID = filteredGameInfo[indexPath.row].dealID
       
-        lowPrice = gameInfo[indexPath.row].currentPrice
-        retailPrice = gameInfo[indexPath.row].listPrice
+        lowPrice = filteredGameInfo[indexPath.row].currentPrice
+        retailPrice = filteredGameInfo[indexPath.row].listPrice
         
         print("User selected row at \(indexPath)")
         let cell = tableView.cellForRow(at: indexPath)
@@ -159,8 +159,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 // Filter game data based on settings
                                 let userDefaults = UserDefaults.standard
                                 
-                                self.filteredGameInfo = self.gameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
-                                
                                 let test = userDefaults.string(forKey: "earliestRelease")
                                 print(test!)
                                 
@@ -171,6 +169,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 
                                 self.filteredGameInfo = self.gameInfo.filter{$0.releaseDate >= test3}
         
+                                self.filteredGameInfo = self.filteredGameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
                                 
 //                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
                                 self.HomeTableView.reloadData()
