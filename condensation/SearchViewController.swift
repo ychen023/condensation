@@ -31,6 +31,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTableView.dataSource = self
         
         self.hideKeyboardWhenTappedAround()
+        searchTableView.rowHeight = 80.0
 
     }
     

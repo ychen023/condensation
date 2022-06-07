@@ -151,17 +151,20 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
                         print("im sorry")
                     } else {
                         do {
-                            let favGames =  try JSONSerialization.jsonObject(with: data!) as! NSDictionary
+                            let favGames =  try JSONSerialization.jsonObject(with: data!) as? NSDictionary
                             DispatchQueue.main.async {
-                                for gameID in favGames {
-                                    let value = gameID.value as! NSDictionary
-                                    let info = value["info"]! as! NSDictionary
-                                    let title = info["title"]!
-                                    let temp3 = UIImageView()
-                                    temp3.downloaded(from: URL(string: info["thumb"] as! String)!)
-                                    
-                                    self.gameInfo.append((gameID.key as! String, title as! String, temp3))
+                                if favGames != nil {
+                                    for gameID in favGames! {
+                                        let value = gameID.value as! NSDictionary
+                                        let info = value["info"]! as! NSDictionary
+                                        let title = info["title"]!
+                                        let temp3 = UIImageView()
+                                        temp3.downloaded(from: URL(string: info["thumb"] as! String)!)
+                                        
+                                        self.gameInfo.append((gameID.key as! String, title as! String, temp3))
+                                    }
                                 }
+                                
 //                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
                                 self.FavTableView.reloadData()
 

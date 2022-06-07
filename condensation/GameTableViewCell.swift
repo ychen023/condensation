@@ -29,24 +29,24 @@ class GameTableViewCell: UITableViewCell {
         
         GameName.translatesAutoresizingMaskIntoConstraints = false
         GameName.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        GameName.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -80).isActive = true
+        GameName.leadingAnchor.constraint(equalTo: self.centerXAnchor, constant: -90).isActive = true
         
         ListedPrice.translatesAutoresizingMaskIntoConstraints = false
-        ListedPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35).isActive = true
+        ListedPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -36).isActive = true
         ListedPrice.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         CurrentPrice.translatesAutoresizingMaskIntoConstraints = false
-        CurrentPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35).isActive = true
+        CurrentPrice.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -36).isActive = true
         CurrentPrice.bottomAnchor.constraint(equalTo: ListedPrice.topAnchor).isActive = true
         
         GameImage.translatesAutoresizingMaskIntoConstraints = false
         GameImage.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        GameImage.trailingAnchor.constraint(equalTo: GameName.leadingAnchor).isActive = true
+        GameImage.trailingAnchor.constraint(equalTo: GameName.leadingAnchor, constant: -4).isActive = true
         GameImage.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         GameImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         
         GameRating.translatesAutoresizingMaskIntoConstraints = false
-        GameRating.leadingAnchor.constraint(equalTo: GameImage.trailingAnchor).isActive = true
+        GameRating.leadingAnchor.constraint(equalTo: GameImage.trailingAnchor, constant: 4).isActive = true
         GameRating.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
