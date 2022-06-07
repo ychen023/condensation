@@ -79,6 +79,46 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
 //        tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            tempGames.remove(at: indexPath.row)
+            gameInfo.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            //reading
+            let archiveURL = URL(fileURLWithPath: NSHomeDirectory() + "/Documents/favorites.archive")
+            let urlString = NSHomeDirectory() + "/Documents/favorites.archive"
+            let readthing = NSArray(contentsOf: archiveURL)
+            
+            
+            
+            //converting to swift array
+            let tempSave = NSArray(contentsOf: archiveURL)
+            let objCArrayTemp = NSMutableArray(array: tempSave ?? [0])
+
+            if var swiftArray = objCArrayTemp as NSArray as? [String] {
+
+                swiftArray.remove(at: indexPath.row)
+
+                print(swiftArray)
+                let favorites = swiftArray as NSArray
+                favorites.write(toFile: urlString, atomically:true)
+            }
+            
+            
+            
+            tableView.endUpdates()
+        }
+        
+       
+    }
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let destination = segue.destination as? DetailViewController {
                 destination.gameID = curGameID

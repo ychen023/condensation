@@ -174,7 +174,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     let objCArrayTemp = NSMutableArray(array: tempSave ?? [0])
 
                     if var swiftArray = objCArrayTemp as NSArray as? [String] {
-                        swiftArray.append(self.gameID)
+                        if !swiftArray.contains(self.gameID) {
+                            swiftArray.append(self.gameID)
+                        }
                         print(swiftArray)
                         let favorites = swiftArray as NSArray
                         favorites.write(toFile: urlString, atomically:true)
