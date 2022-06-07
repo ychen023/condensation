@@ -78,15 +78,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let userDefaults = UserDefaults.standard
-
-        if (userDefaults.value(forKey: "earliestRelease") == nil) {
-            userDefaults.setValue("01/01/97", forKey: "earliestRelease")
-        }
-
-        if (userDefaults.value(forKey: "minRating") == nil) {
-            userDefaults.setValue("0", forKey: "minRating")
-        }
         
         HomeTableView.delegate = self
         HomeTableView.dataSource = self
@@ -100,6 +91,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let userDefaults = UserDefaults.standard
+
+        if (userDefaults.value(forKey: "earliestRelease") == nil) {
+            userDefaults.setValue("01/01/97", forKey: "earliestRelease")
+        }
+
+        if (userDefaults.value(forKey: "minRating") == nil) {
+            userDefaults.setValue("0", forKey: "minRating")
+        }
+        
         game = []
         gameInfo = []
         filteredGameInfo = []
