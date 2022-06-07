@@ -41,6 +41,7 @@ class SettingsViewController: UIViewController {
         
         let userDefaults = UserDefaults.standard
         userDefaults.setValue(String(currentValue), forKey: "minRating")
+        print(currentValue)
     }
     
     @IBAction func releaseDateChanged(_ sender: Any) {

@@ -159,7 +159,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 // Filter game data based on settings
                                 let userDefaults = UserDefaults.standard
                                 
-                                self.filteredGameInfo = self.gameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
+//                                self.filteredGameInfo = self.gameInfo.filter{Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)! }
                                 
                                 let test = userDefaults.string(forKey: "earliestRelease")
                                 print(test!)
@@ -169,7 +169,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 let test2 = dateFormatter.date(from: test!)
                                 let test3 = test2!.timeIntervalSince1970
                                 
-                                self.filteredGameInfo = self.gameInfo.filter{$0.releaseDate >= test3}
+                                self.filteredGameInfo = self.gameInfo.filter{$0.releaseDate >= test3 && Double($0.rate)! >= Double(userDefaults.string(forKey: "minRating")!)!}
         
                                 
 //                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: false)
