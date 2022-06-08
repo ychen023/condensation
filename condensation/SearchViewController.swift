@@ -130,10 +130,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                             DispatchQueue.main.async {
                                 for gameID in favGames {
                                     let value = gameID.value as! NSDictionary
+                                    print(value)
                                     let info = value["info"]! as! NSDictionary
                                     let title = info["title"]!
                                     let temp3 = UIImageView()
-                                    temp3.downloaded(from: URL(string: info["thumb"] as! String)!)
+                                    let thumb = URL(string: info["thumb"] as! String) ?? URL(string: "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg")
+                                    temp3.downloaded(from: thumb!)
 //                                    print(value)
                                     let deals = value["deals"] as! NSArray
                                     
@@ -142,6 +144,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                     if savings["savings"]! as! String  != "0.000000" {
                                         onSale = "On Sale"
                                     }
+                                    
                                     self.gameInfo.append((gameID.key as! String, title as! String, temp3, onSale))
                                 }
 //                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer2), userInfo: nil, repeats: false)
