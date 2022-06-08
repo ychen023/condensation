@@ -10,7 +10,6 @@
 		090A5DEA283DB683007C02EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A5DE9283DB683007C02EC /* AppDelegate.swift */; };
 		090A5DEC283DB683007C02EC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A5DEB283DB683007C02EC /* SceneDelegate.swift */; };
 		090A5DF1283DB683007C02EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DEF283DB683007C02EC /* Main.storyboard */; };
-		090A5DF3283DB685007C02EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DF2283DB685007C02EC /* Assets.xcassets */; };
 		090A5DF6283DB685007C02EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DF4283DB685007C02EC /* LaunchScreen.storyboard */; };
 		090A5DFF283DBC58007C02EC /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090A5DFD283DBC58007C02EC /* GameTableViewCell.swift */; };
 		090A5E00283DBC58007C02EC /* GameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090A5DFE283DBC58007C02EC /* GameTableViewCell.xib */; };
@@ -20,6 +19,7 @@
 		3C0AC554283DC120000589A7 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC553283DC120000589A7 /* FavoritesViewController.swift */; };
 		3C0AC556283DC12F000589A7 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC555283DC12F000589A7 /* TopViewController.swift */; };
 		3C0AC558283DC141000589A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AC557283DC141000589A7 /* SettingsViewController.swift */; };
+		3C900033285027E200CBB389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C900032285027E200CBB389 /* Assets.xcassets */; };
 		50A8CE3B283DC9E40051381A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8CE3A283DC9E40051381A /* Model.swift */; };
 		50A8CE3F284EB1DE0051381A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8CE3E284EB1DE0051381A /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +29,6 @@
 		090A5DE9283DB683007C02EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		090A5DEB283DB683007C02EC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		090A5DF0283DB683007C02EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		090A5DF2283DB685007C02EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		090A5DF5283DB685007C02EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		090A5DF7283DB685007C02EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		090A5DFD283DBC58007C02EC /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		3C0AC553283DC120000589A7 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		3C0AC555283DC12F000589A7 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		3C0AC557283DC141000589A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3C900032285027E200CBB389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../../Downloads/AppIcons/Assets.xcassets; sourceTree = "<group>"; };
 		50A8CE3A283DC9E40051381A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		50A8CE3E284EB1DE0051381A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,9 +79,9 @@
 				090A5DEF283DB683007C02EC /* Main.storyboard */,
 				090A5DFD283DBC58007C02EC /* GameTableViewCell.swift */,
 				090A5DFE283DBC58007C02EC /* GameTableViewCell.xib */,
-				090A5DF2283DB685007C02EC /* Assets.xcassets */,
 				090A5DF4283DB685007C02EC /* LaunchScreen.storyboard */,
 				090A5DF7283DB685007C02EC /* Info.plist */,
+				3C900032285027E200CBB389 /* Assets.xcassets */,
 				090A5E01283DBF06007C02EC /* Settings.bundle */,
 				3C0AC54D283DC0F6000589A7 /* HomeViewController.swift */,
 				090A5E072846F5DC007C02EC /* DetailViewController.swift */,
@@ -155,8 +155,8 @@
 				090A5E00283DBC58007C02EC /* GameTableViewCell.xib in Resources */,
 				090A5DF6283DB685007C02EC /* LaunchScreen.storyboard in Resources */,
 				090A5E02283DBF06007C02EC /* Settings.bundle in Resources */,
-				090A5DF3283DB685007C02EC /* Assets.xcassets in Resources */,
 				090A5DF1283DB683007C02EC /* Main.storyboard in Resources */,
+				3C900033285027E200CBB389 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

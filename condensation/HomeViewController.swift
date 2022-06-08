@@ -127,7 +127,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     } else {
                         do {
                             let questions =  try JSONSerialization.jsonObject(with: data!) as! NSArray
-                            print("start")
+//                            print("start")
                             
 
                             DispatchQueue.main.async {
@@ -145,7 +145,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     
                                     for i in 0..<checkUniqueName.count {
                                         if checkUniqueName.contains(curr["title"] as! String) {
-                                            print("contains")
+//                                            print("contains")
                                         } else {
                                             self.gameInfo.append(GameInfo(title: curr["title"] as! String, listPrice: curr["normalPrice"] as! String, currentPrice: curr["salePrice"] as! String, rate: curr["dealRating"] as! String, gameID: curr["gameID"] as! String, image: temp3, dealID: curr["dealID"] as! String, releaseDate: curr["releaseDate"] as! Double))
                                             checkUniqueName.append(curr["title"] as! String)
@@ -163,7 +163,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 
                                 let test = userDefaults.string(forKey: "earliestRelease")
                                 print(test!)
-                                
                                 let dateFormatter = DateFormatter()
                                 dateFormatter.dateFormat = "mm/dd/yy"
                                 let test2 = dateFormatter.date(from: test!)
