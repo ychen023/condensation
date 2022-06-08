@@ -21,7 +21,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var tempGames : [String] = []
     
-    var gameInfo : [(String, String, UIImageView)] = []
+    var gameInfo : [(String, String, UIImageView, String)] = []
     
     var myUrl = "https://www.cheapshark.com/api/1.0/games?ids="
     
@@ -43,6 +43,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
         cell.textLabel?.text = gameInfo[indexPath.row].1
         cell.imageView?.image = gameInfo[indexPath.row].2.image
+        cell.detailTextLabel?.text = gameInfo[indexPath.row].3
         return cell
     }
     
@@ -133,8 +134,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                     let title = info["title"]!
                                     let temp3 = UIImageView()
                                     temp3.downloaded(from: URL(string: info["thumb"] as! String)!)
+//                                    print(value)
+                                    let deals = value["deals"] as! NSArray
                                     
-                                    self.gameInfo.append((gameID.key as! String, title as! String, temp3))
+                                    var onSale = "Not On Sale"
+                                    let savings = deals[0] as! NSDictionary
+                                    if savings["savings"]! as! String  != "0.000000" {
+                                        onSale = "On Sale"
+                                    }
+                                    self.gameInfo.append((gameID.key as! String, title as! String, temp3, onSale))
                                 }
 //                                let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer2), userInfo: nil, repeats: false)
                                 self.searchTableView.reloadData()
